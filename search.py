@@ -2,7 +2,7 @@ from googlesearch import search
 from difflib import get_close_matches
 
 
-def getLink(site, question, numberOfResults):
+def search_web(site, question, numberOfResults):
     """
     This function scraps google for results based on the website needed,
     the question, and the number of results required
@@ -16,15 +16,15 @@ def getLink(site, question, numberOfResults):
         [List(str)] -- [list of strings. returns the url returned by the google search]
     """
 
-    query = search_web(site) + " " + question
+    query = get_website(site) + " " + question
 
     listOfLinks = []
-    for links in search(query, tld="ca", lang='en', num=10, stop=numberOfResults, pause=2):
+    for links in search(query, tld="com", lang='en', num=numberOfResults, stop=numberOfResults, pause=2):
         listOfLinks.append(links)
     return links
 
 
-def search_web(website, question):
+def get_website(website):
     """[summary]
 
     Arguments:
