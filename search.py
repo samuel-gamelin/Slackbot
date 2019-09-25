@@ -1,14 +1,8 @@
-try:
-    from googlesearch import search
-except ImportError:
-    print("No module named 'google' found")
-try:
-    from difflib import get_close_matches
-except ImportError:
-    print("No module named 'difflib' found")
+from googlesearch import search
+from difflib import get_close_matches
 
 
-def search(site, question, numberOfResults):
+def search_web(site, question, numberOfResults):
     """
     This function scraps google for results based on the website needed,
     the question, and the number of results required
@@ -45,6 +39,3 @@ def findWebsite(website):
 
     realWebsite = websites[0]
     return realWebsite
-
-
-print(search("h", "what are stacks?", 1))
