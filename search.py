@@ -2,11 +2,15 @@ try:
     from googlesearch import search
 except ImportError:
     print("No module named 'google' found")
+try:
+    from difflib import get_close_matches
+except ImportError:
+    print("No module named 'difflib' found")
 
 
-def google_search(site, question, numberOfResults):
+def search(site, question, numberOfResults):
     """
-    This function scraps google for results based on the website needed, 
+    This function scraps google for results based on the website needed,
     the question, and the number of results required
 
     Arguments:
@@ -18,11 +22,7 @@ def google_search(site, question, numberOfResults):
         [List(str)] -- [list of strings. returns the url returned by the google search]
     """
 
-    websites = ['site:stackoverflow.com', 'site:stackexchange.com',
-                'site:docs.oracle.com', 'site:docs.python.org',
-                'site:quora.com', 'site:codeproject.com', '']
-
-    query = websites[0] + " " + question
+    query = findWebsite(site) + " " + question
 
     listOfLinks = []
     for links in search(query, tld="ca", lang='en', num=10, stop=numberOfResults, pause=2):
@@ -30,4 +30,21 @@ def google_search(site, question, numberOfResults):
     return links
 
 
-print(google_search("h", "what are stacks?", 1))
+def findWebsite(website):
+    """[summary]
+
+    Arguments:
+        website {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
+
+    websites = ['site:stackoverflow.com', 'site:stackexchange.com', 'site:docs.oracle.com',
+                'site:docs.python.org', 'site:quora.com', 'site:codeproject.com', '']
+
+    realWebsite = websites[0]
+    return realWebsite
+
+
+print(search("h", "what are stacks?", 1))
