@@ -52,7 +52,7 @@ def process_message(payload):
 
     else:
         matches = difflib.get_close_matches(command, available_commands)
-        if not matches or len(matches) > 1:
+        if not matches or len(matches) > 1 or matches[0] == 'help':
             send_message("I don't recognize that command. Type in 'help' for a list of available commands.", channel, web_client)
         else:
             send_message("I don't recognize that command. Did you mean " + matches[0] + "? If not, type in 'help' for a list of available commands.", channel, web_client)
