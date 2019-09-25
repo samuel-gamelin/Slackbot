@@ -1,1 +1,3 @@
 slackclient[optional]
+beautifulsoup4
+google
