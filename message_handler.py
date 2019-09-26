@@ -50,6 +50,7 @@ def process_message(payload):
     if not command.startswith('!'):
         return
 
+    command = command[1:]
     arguments = _input[1:]
 
     if command == 'help':
