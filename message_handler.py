@@ -38,7 +38,7 @@ def process_message(payload):
 
     data = payload['data']
 
-    if 'subtype' in data and data['subtype'] == 'bot_message' or not data['channel'].startswith('D'): # Ensure the bot isn't responding to itself and that it's only responding to direct messages
+    if 'subtype' in data and data['subtype'] == 'bot_message': # Ensure the bot isn't responding to itself
         return
 
     web_client = payload['web_client']
