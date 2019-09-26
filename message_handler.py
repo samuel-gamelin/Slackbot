@@ -59,16 +59,16 @@ def process_message(payload):
         try:
             website = arguments[0].lower()
             query = ' '.join(arguments[1:])
+
+            if website in website_map:
+                website = website_map[website]
+            elif website.split('|')[1][:-1] in list(website_map.values()):
+                website = website.split('|')[1][:-1]
+            elif website not in list(website_map.values()):
+                send_message('Website or acronym not supported!', channel, web_client)
+                return
         except:
             send_message('Invalid arguments. Type help for assistance with this command.', channel, web_client)
-            return
-
-        if website in website_map:
-            website = website_map[website]
-        elif website.split('|')[1][:-1] in list(website_map.values()):
-            website = website.split('|')[1][:-1]
-        elif website not in list(website_map.values()):
-            send_message('Website or acronym not supported!', channel, web_client)
             return
         
         send_message('\n'.join(search.search_web(website, query, 3)), channel, web_client)
