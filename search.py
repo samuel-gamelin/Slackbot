@@ -1,5 +1,4 @@
 from googlesearch import search
-from difflib import get_close_matches
 
 
 def search_web(site, question, numberOfResults):
@@ -16,26 +15,8 @@ def search_web(site, question, numberOfResults):
         [List(str)] -- [list of strings. returns the url returned by the google search]
     """
 
-    query = get_website(site) + " " + question
-
+    query = "site: " + site + " " + question
     listOfLinks = []
     for links in search(query, tld="com", lang='en', num=numberOfResults, stop=numberOfResults, pause=2):
         listOfLinks.append(links)
-    return links
-
-
-def get_website(website):
-    """[summary]
-
-    Arguments:
-        website {[type]} -- [description]
-
-    Returns:
-        [type] -- [description]
-    """
-
-    websites = ['site:stackoverflow.com', 'site:stackexchange.com', 'site:docs.oracle.com',
-                'site:docs.python.org', 'site:quora.com', 'site:codeproject.com', '']
-
-    realWebsite = websites[0]
-    return realWebsite
+    return listOfLinks

@@ -9,11 +9,13 @@ with open('bot_help.md', 'r') as f:
 
 
 def send_message(message, channel, web_client):
-    """ str, slack.WebClient -> None
+    """[summary]
 
-    Sends a message to a specific channel.
+    Arguments:
+        message {[type]} -- [description]
+        channel {[type]} -- [description]
+        web_client {[type]} -- [description]
     """
-
     web_client.chat_postMessage(
         channel=channel,
         text=message
@@ -21,14 +23,15 @@ def send_message(message, channel, web_client):
 
 
 def process_message(payload):
-    """ dict -> None
+    """[summary]
 
-    Processes a Slack message.
+    Arguments:
+        payload {[type]} -- [description]
     """
-
     data = payload['data']
 
-    if 'subtype' in data and data['subtype'] == 'bot_message' or not data['channel'].startswith('D'): # Ensure the bot isn't responding to itself and that it's only responding to direct messages
+    # Ensure the bot isn't responding to itself and that it's only responding to direct messages
+    if 'subtype' in data and data['subtype'] == 'bot_message' or not data['channel'].startswith('D'):
         return
 
     web_client = payload['web_client']
@@ -41,7 +44,7 @@ def process_message(payload):
 
     if command == 'help':
         send_message(help_message, channel, web_client)
-    
+
     elif command == 'search':
         send_message('Not ready yet!', channel, web_client)
         return
@@ -53,6 +56,8 @@ def process_message(payload):
     else:
         matches = difflib.get_close_matches(command, available_commands)
         if not matches or len(matches) > 1 or matches[0] == 'help':
-            send_message("I don't recognize that command. Type in 'help' for a list of available commands.", channel, web_client)
+            send_message(
+                "I don't recognize that command. Type in 'help' for a list of available commands.", channel, web_client)
         else:
-            send_message("I don't recognize that command. Did you mean " + matches[0] + "? If not, type in 'help' for a list of available commands.", channel, web_client)
+            send_message("I don't recognize that command. Did you mean " +
+                         matches[0] + "? If not, type in 'help' for a list of available commands.", channel, web_client)
