@@ -9,7 +9,7 @@ website_map = {
     'so': 'stackoverflow.com',
     'ex': 'stackexchange.com',
     'doc-java': 'docs.oracle.com',
-    'doc-python': 'docs.python.org',
+    'doc-py': 'docs.python.org',
     'quora': 'quora.com',
     'cp': 'codeproject.com'
 }
@@ -46,7 +46,7 @@ def process_message(payload):
     message = data['text']
     
     _input = re.split(r'\s+', message)
-    command = _input[0]
+    command = _input[0].lower()
     arguments = _input[1:]
 
     if command == 'help':
@@ -54,7 +54,7 @@ def process_message(payload):
     
     elif command == 'search':
         try:
-            website = arguments[0]
+            website = arguments[0].lower()
             query = ' '.join(arguments[1:])
         except:
             send_message('Invalid arguments. Type help for assistance with this command.', channel, web_client)
