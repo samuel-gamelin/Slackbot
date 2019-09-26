@@ -9,7 +9,7 @@ Currently supported websites (and acronyms):
 - docs.oracle.com (doc-java)
 - docs.python.org (doc-py)
 - quora.com (quora)
-- and CodeProject.com (cp)._
+- CodeProject.com (cp)._
 
 help
 _Displays this message._
