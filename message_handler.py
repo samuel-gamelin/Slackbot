@@ -62,7 +62,7 @@ def process_message(payload):
 
         if website in website_map:
             website = website_map[website]
-        elif website not in website_map.values():
+        elif website not in list(website_map.values()):
             send_message('Website or acronym not supported!', channel, web_client)
             return
         
