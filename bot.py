@@ -12,8 +12,7 @@ def handle_message(**payload):
 
 def main():
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-t', '--token', type=str,
-                        required=True, help='The Slack API token.')
+    parser.add_argument('-t', '--token', type=str, required=True, help='The Slack API token.')
 
     args = parser.parse_args()
 
