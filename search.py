@@ -3,16 +3,16 @@ from googlesearch import search
 
 def search_web(site, question, numberOfResults):
     """
-    This function scraps google for results based on the website needed,
-    the question, and the number of results required
+    This function scrapes google for results based on the website needed,
+    the question, and the number of results required.
 
     Arguments:
-        site {[str]} -- [This will be used to search a specific website]
-        question {[str]} -- [The question the user wants to ask]
-        numberOfResults {[int]} -- [the number of links they want returned]
+        site {[str]} -- [The website from which search results will be obtained]
+        question {[str]} -- [The query to use as a search]
+        numberOfResults {[int]} -- [the number of links to be returned]
 
     Returns:
-        [List(str)] -- [list of strings. returns the url returned by the google search]
+        [List(str)] -- [Returns the URLs of the top results]
     """
 
     query = "site: " + site + " " + question
