@@ -38,7 +38,8 @@ def process_message(payload):
 
     data = payload['data']
 
-    if 'subtype' in data and data['subtype'] == 'bot_message': # Ensure the bot isn't responding to itself
+    # Ensure the bot isn't responding to itself or messages without text (i.e. link-only messages)
+    if 'subtype' in data and data['subtype'] == 'bot_message' or 'text' not in data:
         return
 
     web_client = payload['web_client']
