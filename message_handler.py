@@ -47,6 +47,9 @@ def process_message(payload):
     
     _input = re.split(r'\s+', message)
     command = _input[0].lower()
+    if not command.startswith('!'):
+        return
+
     arguments = _input[1:]
 
     if command == 'help':
@@ -59,7 +62,7 @@ def process_message(payload):
         except:
             send_message('Invalid arguments. Type help for assistance with this command.', channel, web_client)
             return
-
+        print(list(website_map.values()))
         if website in website_map:
             website = website_map[website]
         elif website not in list(website_map.values()):
