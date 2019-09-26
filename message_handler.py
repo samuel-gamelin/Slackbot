@@ -68,7 +68,7 @@ def process_message(payload):
                 send_message('Website or acronym not supported!', channel, web_client)
                 return
         except:
-            send_message('Invalid arguments. Type help for assistance with this command.', channel, web_client)
+            send_message('Invalid arguments. Type !help for assistance with this command.', channel, web_client)
             return
         
         send_message('\n'.join(search.search_web(website, query, 3)), channel, web_client)
