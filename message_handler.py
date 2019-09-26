@@ -3,7 +3,7 @@ import re
 import search
 
 
-available_commands = ['search', 'help']
+available_commands = ['!search', '!help']
 available_websites = ['stackoverflow.com', 'stackexchange.com', 'docs.oracle.com', 'docs.python.org', 'quora.com', 'codeproject.com']
 website_map = {
     'so': 'stackoverflow.com',
@@ -50,22 +50,23 @@ def process_message(payload):
     if not command.startswith('!'):
         return
 
-    command = command[1:]
     arguments = _input[1:]
 
-    if command == 'help':
+    if command == '!help':
         send_message(help_message, channel, web_client)
     
-    elif command == 'search':
+    elif command == '!search':
         try:
             website = arguments[0].lower()
             query = ' '.join(arguments[1:])
         except:
             send_message('Invalid arguments. Type help for assistance with this command.', channel, web_client)
             return
-        print(list(website_map.values()))
+
         if website in website_map:
             website = website_map[website]
+        elif website.split('|')[1][:-1] in list(website_map.values()):
+            website = website.split('|')[1][:-1]
         elif website not in list(website_map.values()):
             send_message('Website or acronym not supported!', channel, web_client)
             return
