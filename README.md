@@ -14,7 +14,7 @@ git clone https://github.com/samuel-gamelin/Slackbot && cd Slackbot
 
 2. Install the Python dependencies in the `requirements.txt` file (shown here using pip). The use of [virtualenv](https://virtualenv.pypa.io/en/latest/) is recommended.
 ```
-pip3 install -r requirements
+pip3 install -r requirements.txt
 ```
 
 3. Run the bot
